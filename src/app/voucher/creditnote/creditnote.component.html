@@ -1,0 +1,117 @@
+<nav class="navbar navbar-light bg-light m-2">
+  <h1 class="h2 ps-1 page-title"><strong>Credit Note</strong></h1>
+</nav>
+<main class="content">
+  <div class="row p-3 bg-white">
+    <form [formGroup]="creditdata" (ngSubmit)="save(creditdata.value)">
+      <div class="row g-3">
+        <input type="text" hidden readonly formControlName="id">
+        <div class="col-md-4">
+          <label class="form-label">Date<span class="text-danger">*</span><span *ngIf="creditdata.controls.date.touched && creditdata.controls.date.invalid" class="text-danger small">Please Select Date</span></label>
+          <div class="input-group">
+            <input class="form-control mat-datepicker" readonly matInput [matDatepicker]="picker"
+              placeholder="dd/mm/yyyy" formControlName="date">
+            <div class="input-group-append">
+              <mat-datepicker-toggle class="mat-datepicker-icon" matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Customer<span class="text-danger">*</span><span *ngIf="creditdata.controls.customer.touched && creditdata.controls.customer.invalid" class="text-danger small">Please Select Customer</span></label>
+          <select class="form-select" formControlName="customer">
+            <option selected value="text">test</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Sale Invoice</label>
+          <select class="form-select" formControlName="saleinvoice">
+            <option selected value="text">demo</option>
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <table class="table border  table-hover p-3 mb-5">
+            <thead>
+              <tr>
+                <th></th>
+                <th class="border ">GST Percent</th>
+                <th class="border ">Charges</th>
+              </tr>
+            </thead>
+           <tbody>
+            <tr>
+              <td class="border">Discount</td>
+              <td class="border"><input class=" p-2 m-2  border form-control text-end" type="text" placeholder="0.00"></td>
+              <td  class="border"><input class=" p-2 m-2 border form-control text-end" type="text" placeholder="Charges"></td>
+            </tr>
+            <tr>
+              <td class="border">Total</td>
+              <td class="border"></td>
+              <td class="border"><input class=" p-2 m-2 border form-control text-end" type="text" placeholder="0.00"></td>
+            </tr>
+           </tbody>
+
+        </table>
+        <br><br><br>
+        <div class="col-md-12">
+          <button type="submit" class="btn btn-primary" [disabled]="!creditdata.valid">Save</button>
+          <a class="btn btn-danger ms-2" routerLink="/voucher/creditnote">Cancel</a>
+        </div>
+        </div>
+
+        <div class="col-lg-6">
+          <table class="table table-hover ml-5" >
+
+          <tbody>
+            <tr>
+              <td class="border " width="350px" >Total Taxable Amount</td>
+              <td class="border text-end"  width="350px">0.00</td>
+            </tr>
+            <tr>
+              <td class="border">CGST Amount</td>
+              <td class="border text-end">0.00</td>
+            </tr>
+            <tr>
+              <td class="border">SGST Amount</td>
+              <td class="border text-end">0.00</td>
+            </tr>
+            <tr>
+              <td class="border">IGST Amount</td>
+              <td class="border text-end">0.00</td>
+            </tr>
+
+             <tr>
+              <td class="border">
+                <span class="">Round Off</span>
+                <label class="switch ms-4">
+                  <input type="checkbox" checked>
+                  <span class="slider round">
+                    <span class="Yes">Yes</span>
+                    <span class="No">No</span>
+                  </span>
+                </label>
+                <!-- <span class="mt-2">Round Off</span>
+                <label class="switch ms-4">
+                <input type="checkbox" checked>
+                <span class="slider round "></span>
+              </label> -->
+            </td>
+              <td class="border">
+                <input class=" p-2 m-2 border form-control text-end " type="text" placeholder="0.00">
+              </td>
+             </tr>
+            <tr>
+              <td class="border">Grand Total</td>
+              <td class="border text-end">0.00</td>
+            </tr>
+          </tbody>
+          </table>
+        </div>
+
+      </div>
+    </form>
+  </div>
+
+</main>
+
